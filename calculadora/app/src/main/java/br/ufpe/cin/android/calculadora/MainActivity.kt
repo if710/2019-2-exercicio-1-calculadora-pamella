@@ -87,6 +87,26 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // Save the current state as the activity begins to stop
+    override fun onSaveInstanceState(outState: Bundle?) {
+        outState?.run {
+            putString("text_info", text_info.text.toString())
+            putString("text_calc", text_calc.text.toString())
+        }
+
+        super.onSaveInstanceState(outState)
+    }
+
+    // Restore the saved instance state when the activity is recreated
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        savedInstanceState?.run {
+            text_info.text = getString("text_info")
+            text_calc.setText(getString("text_calc"))
+        }
+    }
+
 
     //Como usar a função:
     // eval("2+2") == 4.0
