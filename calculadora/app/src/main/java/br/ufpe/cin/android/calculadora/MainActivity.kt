@@ -2,12 +2,89 @@ package br.ufpe.cin.android.calculadora
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Calculator buttons listeners
+        btn_0.setOnClickListener {
+            text_calc.append("0")
+        }
+        btn_1.setOnClickListener {
+            text_calc.append("1")
+        }
+        btn_2.setOnClickListener {
+            text_calc.append("2")
+        }
+        btn_3.setOnClickListener {
+            text_calc.append("3")
+        }
+        btn_4.setOnClickListener {
+            text_calc.append("4")
+        }
+        btn_5.setOnClickListener {
+            text_calc.append("5")
+        }
+        btn_6.setOnClickListener {
+            text_calc.append("6")
+        }
+        btn_7.setOnClickListener {
+            text_calc.append("7")
+        }
+        btn_8.setOnClickListener {
+            text_calc.append("8")
+        }
+        btn_9.setOnClickListener {
+            text_calc.append("9")
+        }
+        btn_Add.setOnClickListener {
+            text_calc.append("+")
+        }
+        btn_Subtract.setOnClickListener {
+            text_calc.append("-")
+        }
+        btn_Multiply.setOnClickListener {
+            text_calc.append("*")
+        }
+        btn_Divide.setOnClickListener {
+            text_calc.append("/")
+        }
+        btn_Power.setOnClickListener {
+            text_calc.append("^")
+        }
+        btn_Dot.setOnClickListener {
+            text_calc.append(".")
+        }
+        btn_LParen.setOnClickListener {
+            text_calc.append("(")
+        }
+        btn_RParen.setOnClickListener {
+            text_calc.append(")")
+        }
+        btn_Clear.setOnClickListener {
+            text_calc.setText("")
+        }
+
+        // Manage calculator operations
+        btn_Equal.setOnClickListener {
+            try {
+                // Calculate expression result
+                val exp = text_calc.text.toString()
+                val result = eval(exp)
+                text_info.text = result.toString()
+            } catch (e: RuntimeException) {
+                // Show error message instead of crashing the app
+                Toast.makeText(
+                    applicationContext, e.message, Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
     }
 
 
